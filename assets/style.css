@@ -1,0 +1,44 @@
+section.hero{
+    display: flex;
+    height: 100vh;
+    background: url(/a.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    & div.container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        backdrop-filter: blur(16px) brightness(0.4);
+        align-items: center;
+
+        & h1{
+            font-size: 32px;
+            display: flex;
+            gap:1rem;
+            font-weight: 300;
+
+            & span{
+                color:#C1C3A7;
+
+                &::after{
+                    padding-left: 5px;
+                }
+
+                &#timerDays::after{
+                    content: 'dní';
+                }
+
+                &#timerHours::after{
+                    content: 'hodin';
+                }
+
+                &#timerMinutes::after{
+                    content: 'minut';
+                }
+            }
+        }
+    }
+}
