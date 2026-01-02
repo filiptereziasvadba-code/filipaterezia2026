@@ -1,7 +1,7 @@
 section.hero{
     display: flex;
     height: 100vh;
-    background: url(a.png);
+    background: url(assets/a.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
