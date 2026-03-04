@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&F 2026: Informace</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script async src="https://tally.so/widgets/embed.js"></script>
+</head>
+
+<body class="in-faq">
+    <header class="header">
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay">
+            <ul class="menu-nav">
+                <li>
+                    <a href="/#hero">Úvod</a>
+                </li>
+                <li>
+                    <a href="/#misto">Místo konání</a>
+                </li>
+                <li>
+                    <a href="/#ceremony">Harmonogram & Menu</a>
+                </li>
+                <li>
+                    <a href="#faq">Praktické informace</a>
+                </li>
+                <li>
+                    <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">Odpovědět na RSVP<span class="rsvp tooltip-bottom"
+                            data-tooltip="Potvrzení účasti"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn">
+            <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">RSVP<span class="rsvp tooltip-bottom" data-tooltip="Potvrzení účasti"></span></a>
+        </div>
+    </header>
+    <section id="faq" class="light menu-trigger">
+        <div class="container">
+            <h2>Praktické informace</h2>
+            <div class="question" data-key="dary">
+                <div class="question-title">
+                    <h3>dary</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Jaký svatební dar zvolit?</h4>
+                            <p>To nejdůležitější pro nás je, že tento den můžeme sdílet právě s Vámi. Pokud nás však
+                                chcete nějak obdarovat, budeme vděční za finanční příspěvek (jelikož už máme domácnost
+                                zařízenou), který nám pomůže na naší společné cestě životem, nebo alespoň na svatební
+                                cestě.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="question" data-key="dress-code">
+                <div class="question-title">
+                    <h3>Dress code</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Jak se obléct na obřad a hostinu?</h4>
+                            <p>Dress code nemáme striktně stanovený. Vzhledem k atmosférě svatby je vhodné formálnější
+                                oblečení (jako na každou jinou svatbu). Nejdůležitější však je, abyste se cítili dobře,
+                                a podle toho se oblečte. Přes den budeme doufat ve slunečné počasí, ale připraveným
+                                štěstí přeje. Pokud bude hezké počasí, je možné, že část programu hostiny se přesune na
+                                travnatou část břehu Dunaje před restaurací. Pokud byste se chtěli barevně sladit s naší
+                                svatbou, níže naleznete
+                                naši paletu barev.</p>
+                            <div class="paleta">
+                                    <div id="barva1" class="barva"></div>
+                                    <div id="barva2" class="barva"></div>
+                                    <div id="barva3" class="barva"></div>
+                                    <div id="barva4" class="barva"></div>
+                                    <div id="barva5" class="barva"></div>
+                                    <div id="barva6" class="barva"></div>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="question" data-key="prubeh-obradu">
+                <div class="question-title">
+                    <h3>Průběh obřadu</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Jak bude probíhat obřad?</h4>
+                            <p>Sňatek bude církevní a uskuteční se v kostele, bez mše svaté. Po úvodních obřadech bude
+                                následovat bohoslužba
+                                slova (biblická čtení a proslov kněze), po které si vyslovíme manželský slib a vyměníme
+                                prsteny. Obřad bude zakončen podpisem matrik a závěrečným požehnáním novomanželů.
+                                Předpokládáme, že celý obřad bude trvat asi 30 až 40 minut.</p>
+                        </li>
+                        <li>
+                            <h4>Co dělat v kostele a kde si sednout?</h4>
+                            <p>Pokud nejste zvyklí na prostředí kostela, nemusíte se vůbec stresovat. Klidně se řiďte
+                                tím, co dělají ostatní. Přední lavice budou vyhrazeny pro nejbližší rodinu, ostatní
+                                svatebčané si mohou sednout kamkoli za ně. Prosíme jen o zachování ticha
+                                během obřadu.</p>
+                        </li>
+                        <li>
+                            <h4>Co se bude dít po obřadě?</h4>
+                            <p>Po skončení obřadu vytvoří svatebčané v kostele i před kostelem slavnostní „špalíř“,
+                                kterým novomanželé projdou ven. Následovat bude společná fotografie všech svatebčanů a
+                                prostor pro osobní gratulace novomanželům. Na Slovensku je zvykem přinést nevěstě
+                                při gratulaci kytici, klidně  tuto tradici vynechte.</p>
+                        </li>
+                        <li>
+                            <h4>Bude zajištěna přeprava z obřadu na hostinu?</h4>
+                            <p>Předpokládáme, že svatebčané zvládnou přepravu z obřadu na místo hostiny po vlastní ose (taxi,
+                                MHD nebo pěšky). Cesta vede přes historické centrum a lze ji zvládnout i příjemnou procházkou (vzdálenost je
+                                přibližně 17 minut pěšky, <a href="https://maps.app.goo.gl/omDheBGb5c726YQq5">zde je trasa</a>). Během přesunu se budou novomanželé fotografovat, proto hostina začne
+                                asi 1 až 1.5 hodiny po skončení gratulací. Klidně se tak můžete cestou zastavit na kávu
+                                nebo si procházku ještě prodloužit. Na místě hostiny pro Vás bude připravené pohodlné
+                                posezení, než se k vám připojíme.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="question" data-key="jidlo">
+                <div class="question-title">
+                    <h3>Jídlo</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Jaké bude menu?</h4>
+                            <p>Menu ještě připravujeme, ale můžete se těšit na servírovanou večeři (přibližně mezi
+                                16.30 a 17.00), na kterou naváže teplý a studený bufet. Chybět nebude
+                                svatební dort ani candy bar s dezerty z Girafee Bakery, kde jsme spolu měli naše
+                                první rande. O půlnoci se bude podávat tradiční kapustnica.
+                                Pokud máte speciální stravovací požadavky (vegetariánské/veganské), alergie nebo
+                                intolerance, prosíme, uveďte je v <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">RSVP formuláři</a>.</p>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="question" data-key="foceni">
+                <div class="question-title">
+                    <h3>Focení</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Jak bude probíhat fotografování během svatby?</h4>
+                            <p>Po celý den bude k dispozici profesionální <a href="https://www.instagram.com/diacermakova/">fotografka</a>, která se postará o zachycení všech
+                                důležitých momentů. Proto Vás prosíme, abyste si svatbu užili spolu
+                                s námi, a během obřadu nerušili fotografováním. Na hostině bude možnost se s námi vyfotit
+                                ve skupinkách i jednotlivě.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="question" data-key="deti">
+                <div class="question-title">
+                    <h3>Děti</h3>
+                </div>
+                <div class="question-text">
+                    <ul>
+                        <li>
+                            <h4>Mohu přijít s dítětem?</h4>
+                            <p>Všechny děti jsou na naší svatbě vítány. Rádi přivítáme nejmenší svatebčany stejně jako
+                                dospělé! Před restaurací, kde proběhne hostina, je dětské hřiště.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="hr0" class="hr light">
+        <div class="container">
+            <hr>
+        </div>
+    </section>
+    <section id="ubytovani" class="dark">
+        <div class="container">
+            <h2>Jak se k nám dostat?</h2>
+            <p style="display:none!important;">Připravte se na oslavu, kterou břehy Dunaje nepamatují!</p>
+            <div class="container inner">
+                <div class="hotel" id="hotel1">
+                    <div class="image"></div>
+                    <div class="description">
+                        <h3>Vlakem a MHD</h3>
+                        <hr>
+                        <p>Cesta vlakem je praktické řešení vzhledem k omezeným parkovacím možnostem v centru. Vlakové
+                            nádraží sice není udržované a hezké, ale nachází se v pěší vzdálenosti od centra, případně
+                            lze využít městskou hromadnou dopravu.</p>
+                        <div>
+                            <a class="btn" href="https://www.visitbratislava.com/sk/informacie/doprava-v-meste/">Více o MHD</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel" id="hotel2">
+                    <div class="description">
+                        <h3>Autem</h3>
+                        <hr>
+                        <p>Přímo k místu obřadu se autem nedostanete. Doporučujeme tedy zaparkovat v některé z blízkých
+                            ulic – Kolárska, Heydukova nebo Palackého. V těchto ulicích je parkování o víkendu
+                            zpoplatněno. V místě hostiny je přípravené bezplatné parkování.</p>
+                        <div>
+                            <a class="btn" href="https://paas.sk/">Prakovací politika</a>
+                        </div>
+                    </div>
+                    <div class="image"></div>
+                </div>
+                <div class="hotel" id="hotel3">
+                    <div class="image"></div>
+                    <div class="description">
+                        <h3>Pěšky</h3>
+                        <hr>
+                        <p>Výhodou Bratislavy je kompaktnost centra. Kromě toho je celé staré město jednou velkou pěší
+                            zónou, takže doporučujeme nechat auto zaparkované u svého ubytování. Cestu z obřadu na
+                            hostinu lze zvládnout i pěšky, trasa vede historickým centrem města a zládnete ji pod 20
+                            minut.</p>
+                        <div>
+                            <a class="btn" href="https://maps.app.goo.gl/omDheBGb5c726YQq5">Zobrazit trasu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="assets/main.js"></script>
+    <script src="assets/animations-faq.js"></script>
+</body>
+
+</html>
