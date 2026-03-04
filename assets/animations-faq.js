@@ -243,7 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const hr = description?.querySelector("hr");
     const h3 = description?.querySelector("h3");
     const p = description?.querySelector("p");
-    const btn = description?.querySelector(".btn");
 
     if (h3) {
       tl.from(h3, {
@@ -267,15 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
         y: 15,
         opacity: 0,
         duration: 0.5,
-        ease: "power2.out"
-      }, "-=0.2");
-    }
-
-    if (btn) {
-      tl.from(btn, {
-        y: 10,
-        opacity: 0,
-        duration: 0.4,
         ease: "power2.out"
       }, "-=0.2");
     }
