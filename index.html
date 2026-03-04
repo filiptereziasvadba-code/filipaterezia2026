@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terézia a Filip 2026</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="assets/animations-subtle-v2.js"></script>
+</head>
+
+<body class="in-index">
+    <header class="header">
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay">
+            <ul class="menu-nav">
+                <li>
+                    <a href="#hero">Úvod</a>
+                </li>
+                <li>
+                    <a href="#misto">Místo konání</a>
+                </li>
+                <li>
+                    <a href="#ceremony">Harmonogram & Menu</a>
+                </li>
+                <li>
+                    <a href="faq.html">Praktické informace</a>
+                </li>
+                <li>
+                    <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">Odpovědět na RSVP<span class="rsvp tooltip-bottom"
+                            data-tooltip="Potvrzení účasti"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn">
+            <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">RSVP<span class="rsvp tooltip-bottom" data-tooltip="Potvrzení účasti"></span></a>
+        </div>
+    </header>
+    <section id="hero" class="hero light">
+        <div class="container left">
+            <div id="image" class="mobile">
+                <img src="assets/img/3.jpg" alt="soon to be a married couple">
+                <h1>Terézia & filip</h1>
+            </div>
+            <div id="main-info">
+                <p>19/9/2026</p>
+                <p>Bratislava, Staré mesto</p>
+            </div>
+        </div>
+        <div class="container right">
+        </div>
+    </section>
+    <section id="preface" class="light hero menu-trigger">
+        <div class="container">
+            <div class="paragraph">
+                <h3>Dnes víme, že chceme kráčet životem spolu.</h3>
+                <p>Náš příběh se začal odvíjet celkem nenápadně. Nekonečnými procházkami městem, objevováním
+                    bratislavských kaváren a pomalým poznáváním se navzájem. Čas, který jsme spolu trávili, nás naučil
+                    mnoho — o sobě, o vztazích, i o tom, co je pro nás skutečně důležité. To, kde jsme dnes, je odrazem
+                    nespočtu rozhovorů, společných chvil, práce a rozhodnutí být tu jeden pro druhého a společně růst.
+                    Chceme na této společné cestě životem pokračovat i nadále, nyní však jako manželé, a budeme velmi
+                    rádi, když začátek této nové kapitoly oslavíme spolu s Vámi.</p>
+                <!--<p>Všechno to začalo naším prvním setkáním v Bratislavské kavárně Giraffe Bakery. Během
+                    nesčetných dobrodružství, společných snů a dojemných okamžiků jsme si vybudovali lásku, která je trvalá jako Tatranské horské štíty, odolávající času i bouřím. Spolu
+                    se nyní vydáváme na další dobrodružství v podobě manželství a rádi bychom oslavili tento nový
+                    začátek s Vámi, tedy v okruhu rodiny a dobrých přátel.</p>-->
+                <!--<p>Jsme Terézia a Filip, pár, jejichž společná cesta byla zatím stejně okouzlující jako samotná
+                    Bratislava. Od našeho
+                    prvního setkání v kavárně Giraffe Bakery až po romantické procházky podél Dunaje, se naše pouto s
+                    každým dalším dnem sílilo. Jsme nadšeni, že se s vámi můžeme podělit o tento výjimečný okamžik
+                    našeho života ve městě, které nám bylo svědkem rozkvětu naší lásky. Přidejte se k nám a společně se
+                    pustťme do této nové kapitoly a oslavme naše spojení v srdci Bratislavy, kde každý kout uchovává
+                    vzpomínku a každý okamžik je naplněn láskou.</p>-->
+            </div>
+            <div class="btn">
+                <a href="#tally-open=1ArKBp&tally-layout=modal&tally-width=1000&tally-auto-close=0">Odpovědět na RSVP<span class="rsvp tooltip-bottom"
+                        data-tooltip="Potvrzení účasti"></span></a>
+            </div>
+        </div>
+    </section>
+    <section id="venue" class="hero light">
+        <div class="container left">
+            <div id="misto">
+                <h4 id="obrad-nazev">
+                    <span>Místo obřadu:</span>
+                    <a href="https://sk.wikipedia.org/wiki/Kostol_Najsv%C3%A4tej%C5%A1ieho_Spasite%C4%BEa_(Bratislava)">Kostol Najsv. Spasiteľa</a>
+                </h4>
+                <p id="obrad-adresa">
+                    <span>Adresa:</span>
+                    <a href="https://maps.app.goo.gl/Uh8grrcT5phtNf3Q9">Františkánske nám. 4, Bratislava, Slovensko</a>
+                </p>
+            </div>
+            <hr>
+            <div id="reception">
+                <h4 id="hostina-nazev">
+                    <span>Místo hostiny:</span>
+                    <a href="https://www.auspic.sk/">Aušpic Restaurant</a>
+                </h4>
+                <p id="hostina-adresa">
+                    <span>Adresa:</span>
+                    <a href="https://maps.app.goo.gl/H5L5hkDBPbsd2yEQ9">Viedenská cesta 24, 851 01 Petržalka</a>
+                </p>
+            </div>
+        </div>
+        <div class="container right">
+            <div>
+                <h2>Místo konání</h2>
+            </div>
+        </div>
+    </section>
+    <section id="hr0" class="hr light">
+        <div class="container">
+            <hr>
+        </div>
+    </section>
+    <section id="ceremony" class="light hero">
+        <div class="container left">
+            <h2>Harmonogram</h2>
+        </div>
+        <div class="container right">
+            <div>
+                <p>Obřad <span>14.00</span></p>
+                <p>Gratulace a focení</p>
+                <p>Svatební hostina<span>Začne asi 1 až 1.5 hodiny po skončení gratulací</span></p>
+                <p>Krájení dortu</p>
+                <p>První tanec novomanželů</p>
+                <p>Házení kytice</p>
+                <p>Čepčenie<span>23.30</span></p>
+            </div>
+        </div>
+    </section>
+    <section id="hr1" class="hr light">
+        <div class="container">
+            <hr>
+        </div>
+    </section>
+    <section id="reception" class="light hero">
+        <div class="container left">
+            <div class="menu">
+                <div class="frosted">
+                    <p>
+                        <span>Domus Picta Prosecco DOC Treviso Brut (IT)</span>
+                        <span class="big">Cantine Sgarzi Luigi Alcohol Free (IT, 0%)</span>
+                    </p>
+                    <p>
+                        <span>Cuketová rolka plněná slaným sýrem <small>(1·2·3·4)</small>
+                            <span class="tooltip-bottom" data-tooltip="Vegan">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12"
+                                    fill="rgba(158,165,135,1)">
+                                    <path
+                                        d="M20.998 3V5C20.998 14.6274 15.6255 19 8.99805 19L5.24077 18.9999C5.0786 19.912 4.99805 20.907 4.99805 22H2.99805C2.99805 20.6373 3.11376 19.3997 3.34381 18.2682C3.1133 16.9741 2.99805 15.2176 2.99805 13C2.99805 7.47715 7.4752 3 12.998 3C14.998 3 16.998 4 20.998 3ZM12.998 5C8.57977 5 4.99805 8.58172 4.99805 13C4.99805 13.3624 5.00125 13.7111 5.00759 14.0459C6.26198 12.0684 8.09902 10.5048 10.5019 9.13176L11.4942 10.8682C8.6393 12.4996 6.74554 14.3535 5.77329 16.9998L8.99805 17C15.0132 17 18.8692 13.0269 18.9949 5.38766C17.6229 5.52113 16.3481 5.436 14.7754 5.20009C13.6243 5.02742 13.3988 5 12.998 5Z">
+                                    </path>
+                                </svg>
+                            </span></span>
+                        <span>marinovaný fenikl</span>
+                    </p>
+                    <p>
+                        <span>Slepičí vývar <small>(1·2·3·4)</small></span>
+                        <span>julienne zelenina, těstovina</span>
+                    </p>
+                    <p>
+                        <span>Bravčová panenka sous vide <small>(1·2·3·4)</small></span>
+                        <span>maslová špargľa, pyré z čierneho koreňa, demi glace</span>
+                    </p>
+                    <p>
+                        <span>Falafel <small>(1·2·3·4)</small>
+                            <span class="tooltip-bottom" data-tooltip="Vegan">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12"
+                                    fill="rgba(158,165,135,1)">
+                                    <path
+                                        d="M20.998 3V5C20.998 14.6274 15.6255 19 8.99805 19L5.24077 18.9999C5.0786 19.912 4.99805 20.907 4.99805 22H2.99805C2.99805 20.6373 3.11376 19.3997 3.34381 18.2682C3.1133 16.9741 2.99805 15.2176 2.99805 13C2.99805 7.47715 7.4752 3 12.998 3C14.998 3 16.998 4 20.998 3ZM12.998 5C8.57977 5 4.99805 8.58172 4.99805 13C4.99805 13.3624 5.00125 13.7111 5.00759 14.0459C6.26198 12.0684 8.09902 10.5048 10.5019 9.13176L11.4942 10.8682C8.6393 12.4996 6.74554 14.3535 5.77329 16.9998L8.99805 17C15.0132 17 18.8692 13.0269 18.9949 5.38766C17.6229 5.52113 16.3481 5.436 14.7754 5.20009C13.6243 5.02742 13.3988 5 12.998 5Z">
+                                    </path>
+                                </svg>
+                            </span>
+                        </span>
+                        <span>rajčatový hummus, bazalka, kukuřičná tortilla</span>
+                    </p>
+                    <p>
+                        <span class="baby">Kuracie prsia na prírodno <small>(1·2·3·4)</small></span>
+                        <span>dusená ryža</span>
+                    </p>
+                    <a href="/">
+                        <p>Seznam alergenů</p>
+                    </a>
+                </div>
+                <div class="oznam">
+                    <h4>Na menu zatím pracujeme</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container right">
+            <h2>Hostina</h2>
+        </div>
+    </section>
+    <section id="hr2" class="hr light">
+        <div class="container">
+            <hr>
+        </div>
+    </section>
+    <section id="quote" class="light">
+        <div class="container">
+            <h3>Ahoj a těšíme se na vás</h3>
+            <img src="assets/img/polaroid.png" alt="polaroid pictures">
+
+            <div class="paragraph">
+                <p>Děkujeme všem za nesmírnou podporu a už se nemůžeme dočkat až to spolu oslavíme. Obzvlášť si ceníme
+                    svatebčanů, kteří kvůli nám přijedou z dalekých koutů Česka, Slovenska, Rakouska a dalších
+                    exotických zemí. Pro všechny z vás, kteří k nám vážíte tak dalekou cestu, nebo jen nejste tolik
+                    zdomácnělí v Bratislavě, jsme níže připravili malou ochutnávku z míst, které máme rádi a které
+                    můžete vyzkoušet, máte-li chvíli čas.</p>
+            </div>
+        </div>
+    </section>
+    <section id="hr3" class="hr light">
+        <div class="container">
+            <hr>
+        </div>
+    </section>
+    <section id="zazitek" class="light">
+        <div class="container">
+            <h3>Objevte Bratislavu</h3>
+            <div class="container inner">
+                <div class="accordion">
+                    <div class="at-item">
+                        <div class="at-title active">
+                            <span>Jídlo a Káva</span>
+                        </div>
+                        <div class="at-tab" style="display: block;">
+                            <ul>
+                                <li>
+                                    <p><a href="https://www.instagram.com/emil.bratislava/">Emil</a> - Umění má různé
+                                        podoby a některé lze vypít. Výběrovou kávu, naturální vína, i něco malého na zub
+                                        najdete v Mirbachově paláci.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/bistro24.sk/">Bistro 24</a> - Je
+                                        zařízeno v jednoduchém retro stylu, při kterém si zavzpomínáš na staré časy.
+                                        Atmosféru dotváří školní židle a červený plechový pult.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/ferdinand.bratislava">Bistro Ferdinand</a> -
+                                        Bistro v nejstarším parku ve střední Evropě.
+                                        Najdete ho uprostřed Sadu Janka Krále. Na své si zde přijdou masožravci,
+                                        vegetariáni i vegani.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/gatto_matto_family/">Gatto Matto</a> -
+                                        Restaurace s nádvořím v srdci starého města nabízí kulinářské a barové
+                                        speciality v jedinečné atmosféře, inspirované Itálií.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="at-item">
+                        <div class="at-title">
+                            <span>Kultura</span>
+                        </div>
+                        <div class="at-tab">
+                            <ul>
+                                <li>
+                                    <p><a href="https://sng.sk/">SNG</a> - Galerijní instituce s více než
+                                        sedmdesátiletou historií a se současným pohledem na svět v areálu několika budov
+                                        na dunajském nábřeží.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/kacecko_/">Nedbalka</a> - Kulturní centrum se
+                                        nachází ve 4. patře OD
+                                        Prior na Kamenném náměstí.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://muzeumbratislava.sk/stara-radnica">Veža Starej radnice</a> -
+                                        Kromě nezaměnitelného pohledu na historické centrum města nabízí
+                                        také nahlédnutí do kanceláře Ovídia Fausta - významného bratislavského archiváře
+                                        a muzejníka či ukázky historických zvonů.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="at-item">
+                        <div class="at-title">
+                            <span>Večerní Bratislava</span>
+                        </div>
+                        <div class="at-tab">
+                            <ul>
+                                <li>
+                                    <p><a href="https://www.instagram.com/vycapuernoho/">Výčap u Ernőho</a> - Domovský
+                                        výčep pivovaru Shenk.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/viecha.naturalnych.vinarov/">Viecha
+                                            naturálnych vinárov</a> - Vinný bar v prostorách Staré
+                                        tržnice, kde máte možnost ochutnat rozrůstající se kulturu naturálních a
+                                        řemeslných vín z celého Slovenska.</p>
+                                </li>
+                                <li>
+                                    <p><a href="https://www.instagram.com/its_ostblock/">Temný OST BLOCK</a> - Noční
+                                        kulturní playground s klubovou hudbou,
+                                        oáza specialty kávy, květin a zenové pohody.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="image"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/main.js"></script>
+</body>
+
+</html>
