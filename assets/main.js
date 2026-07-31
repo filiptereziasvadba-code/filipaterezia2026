@@ -60,6 +60,28 @@ $(document).on('keydown', function (e) {
 });
 
 
+// Alergeny modal
+function openAlergenyModal() {
+    $('#alergenyModal').addClass('active').attr('aria-hidden', 'false');
+    $('body').addClass('menu-open');
+}
+
+function closeAlergenyModal() {
+    $('#alergenyModal').removeClass('active').attr('aria-hidden', 'true');
+    $('body').removeClass('menu-open');
+}
+
+$('#alergenyTrigger').on('click', openAlergenyModal);
+
+$('#alergenyModal').on('click', '[data-modal-close]', closeAlergenyModal);
+
+$(document).on('keydown', function (e) {
+    if (e.key === 'Escape' && $('#alergenyModal').hasClass('active')) {
+        closeAlergenyModal();
+    }
+});
+
+
 $("section#zazitek div.accordion div.at-title").on('click', function () {
     $(this)
         .toggleClass("active")

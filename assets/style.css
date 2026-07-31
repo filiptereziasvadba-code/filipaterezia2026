@@ -743,6 +743,22 @@ body {
                 }
               }
 
+              & p.alergeny {
+                font-family: var(--helvetica);
+                font-size: 13px;
+                font-weight: 300;
+                font-style: italic;
+                color: var(--one);
+                cursor: pointer;
+                text-decoration: underline;
+                text-underline-offset: 5px;
+                transition: var(--transition-02);
+
+                &:hover {
+                  color: var(--seven);
+                }
+              }
+
               & a {
                 color: var(--one);
                 text-underline-offset: 5px;
@@ -1693,5 +1709,95 @@ body {
         }
       }
     }
+  }
+}
+/* ------- MODAL - ALERGENY ---------- */
+div.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-03);
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  & div.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: #052a0dcc;
+  }
+
+  & div.modal-window {
+    position: relative;
+    background: var(--two);
+    padding: 40px;
+    width: 100%;
+    max-width: 360px;
+    max-height: 80vh;
+    overflow: auto;
+    transform: translateY(15px);
+    transition: var(--transition-03);
+
+    & h4 {
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--six);
+      margin-bottom: 25px;
+    }
+
+    & ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      & li {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 12px;
+        font-family: var(--helvetica);
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--one);
+
+        & span {
+          font-family: var(--sans);
+          font-weight: 400;
+          color: var(--six);
+          min-width: 1.2em;
+        }
+      }
+    }
+
+    & button.modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      padding: 0;
+      line-height: 1;
+      font-size: 28px;
+      color: var(--six);
+      cursor: pointer;
+      transition: var(--transition-02);
+
+      &:hover {
+        color: var(--seven);
+      }
+    }
+  }
+
+  &.active div.modal-window {
+    transform: translateY(0);
   }
 }
