@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T&amp;F Wedding weekend board</title>
+<style>
+  :root {
+    --bg: #FAF9F6;
+    --surface: #FFFFFF;
+    --surface-sunken: #F1EFE9;
+    --border: #E4E0D8;
+    --border-strong: #CFC9BC;
+    --text-primary: #262420;
+    --text-secondary: #6F6A60;
+    --text-muted: #A39D8F;
+    --radius: 8px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --status-not-started-bg: #F1EFE9;
+    --status-not-started-text: #6F6A60;
+    --status-in-progress-bg: #FAEEDA;
+    --status-in-progress-text: #854F0B;
+    --status-done-bg: #EAF3DE;
+    --status-done-text: #3B6D11;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    padding: 20px 16px 12px;
+    border-bottom: 0.5px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 14px;
+  }
+
+  .day-tabs {
+    display: flex;
+    gap: 6px;
+  }
+
+  .day-tab {
+    flex: 1;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 12px;
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  .day-tab.active {
+    background: var(--text-primary);
+    color: var(--surface);
+    border-color: var(--text-primary);
+  }
+
+  .assignee-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .assignee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    border: 0.5px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    opacity: 0.55;
+  }
+
+  .assignee-chip .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .assignee-chip.active {
+    opacity: 1;
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+
+  .assignee-filters:not(.has-active) .assignee-chip {
+    opacity: 1;
+  }
+
+  main {
+    padding: 16px;
+    padding-bottom: 44vh;
+  }
+
+  #board-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  #board {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .column {
+    min-width: 190px;
+    width: 190px;
+    flex-shrink: 0;
+    background: var(--surface-sunken);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 9px;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+  }
+
+  .column-header .name {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .column-header .count {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.75;
+  }
+
+  .card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 9px 10px;
+    margin-bottom: 8px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .card:active {
+    filter: brightness(0.96);
+  }
+
+  .card .task-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+
+  .card .task-time {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .status-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+
+  .status-badge.not-started {
+    background: var(--status-not-started-bg);
+    color: var(--status-not-started-text);
+  }
+
+  .status-badge.in-progress {
+    background: var(--status-in-progress-bg);
+    color: var(--status-in-progress-text);
+  }
+
+  .status-badge.done {
+    background: var(--status-done-bg);
+    color: var(--status-done-text);
+  }
+
+  .empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  #note-panel {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background: var(--surface);
+    border-top: 0.5px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  #note-panel.open { display: block; }
+
+  #note-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  #note-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #note-text {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  #note-close {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>T&amp;F Wedding weekend board</h1>
+  <p class="subtitle">18&ndash;19 September 2026</p>
+  <div class="day-tabs">
+    <button class="day-tab" data-day="18">Fri 18/09</button>
+    <button class="day-tab" data-day="19">Sat 19/09</button>
+  </div>
+  <div class="assignee-filters" id="assignee-filters"></div>
+</header>
+
+<main>
+  <div id="board-scroll">
+    <div id="board"></div>
+  </div>
+
+  <div id="note-panel">
+    <button id="note-close" aria-label="Close">&times;</button>
+    <p id="note-title"></p>
+    <p id="note-meta"></p>
+    <p id="note-text"></p>
+  </div>
+</main>
+
+<script>
+/* =========================================================
+   DATA — edit this array to update the schedule.
+   "who" can list one person (solo task) or several
+   (e.g. couple tasks) — the task will be duplicated
+   into every listed person's column.
+   Date format: "YYYY-MM-DDTHH:MM"
+   ========================================================= */
+const rawEvents = [
+  { id: 'E1', name: 'Nainstalovat výdobu kostela', from: '2026-09-18T15:00', to: '2026-09-18T18:00', who: ['Filip', 'Terezka'], note: 'Kostel — mše jsou 15:15 a 16:30' },
+  { id: 'E2', name: 'Vyzvednout svatební hry', from: '2026-09-18T09:00', to: '2026-09-18T22:00', who: ['Dominik'], note: 'Dodavatel' },
+  { id: 'E3', name: 'Vyzvednout svatební koláče v Olomouci', from: '2026-09-18T14:00', to: '2026-09-18T15:00', who: ['Dan'], note: 'Dodavatel — Masarykova třída 54, +420 607 778 008' },
+  { id: 'E4', name: 'Navozit věci do kostela', from: '2026-09-18T15:00', to: '2026-09-18T18:00', who: ['Filip', 'Terezka'], note: 'Kostel — květy, vodu, tlačoviny' },
+  { id: 'E5', name: 'Uschovat oblek a věci na checkin', from: '2026-09-18T15:00', to: '2026-09-18T18:00', who: ['Filip'], note: 'Aušpic — Předat danovi v Aušpici' },
+  { id: 'E6', name: 'Navozit svatební koláče do Aušpicu', from: '2026-09-18T18:00', to: '2026-09-18T22:00', who: ['Dan'], note: 'Aušpic' },
+  { id: 'E7', name: 'Navozit věci do Aušpicu', from: '2026-09-18T18:00', to: '2026-09-18T22:00', who: ['Filip', 'Terezka'], note: 'Aušpic — zrcadlo, tlačoviny, SPF a repelenty, výslužky, všci na převlečení' },
+  { id: 'E8', name: 'Visáž', from: '2026-09-19T08:00', to: '2026-09-19T10:00', who: ['Klára'], note: 'Dodavatel' },
+  { id: 'E9', name: 'Převzít vývazky a kytice', from: '2026-09-19T08:00', to: '2026-09-19T09:00', who: ['Filip', 'Terezka'], note: 'T&F doma' },
+  { id: 'E10', name: 'Navozit slané do Aušpicu', from: '2026-09-19T09:00', to: '2026-09-19T12:00', who: ['Dodavatel'], note: 'Aušpic — Dobroty od Elišky' },
+  { id: 'E11', name: 'Nainstalovat výzdobu', from: '2026-09-19T09:00', to: '2026-09-19T11:00', who: ['Dianka'], note: 'Aušpic — Telefon, zrcadlo, Tlačoviny, Pietu, Fotky' },
+  { id: 'E12', name: 'Ollam výzdoba', from: '2026-09-19T09:00', to: '2026-09-19T14:00', who: ['Dodavatel'], note: 'Aušpic' },
+  { id: 'E13', name: 'Hair styling', from: '2026-09-19T10:00', to: '2026-09-19T11:00', who: ['Filip'], note: 'Miletičova' },
+  { id: 'E14', name: 'Visáž', from: '2026-09-19T10:00', to: '2026-09-19T12:00', who: ['Terezka'], note: 'Dodavatel' },
+  { id: 'E15', name: 'Vyzvednout oblek a věci na checkin', from: '2026-09-19T11:00', to: '2026-09-19T12:00', who: ['Filip'], note: 'Gorkého 9' },
+  { id: 'E16', name: 'Carlton check-in', from: '2026-09-19T11:30', to: '2026-09-19T12:05', who: ['Filip'], note: 'Hotel' },
+  { id: 'E17', name: 'Navozit pagáče, koláčky a slivovici před kostel', from: '2026-09-19T12:00', to: '2026-09-19T13:30', who: ['Pauli'], note: 'Kostel — z Aušpicu' },
+  { id: 'E18', name: 'DJ je na místě', from: '2026-09-19T12:00', to: '2026-09-19T14:00', who: ['Dodavatel'], note: 'Aušpic' },
+  { id: 'E19', name: 'Navozit prstýnky do kostela', from: '2026-09-19T12:00', to: '2026-09-19T13:30', who: ['Filip'], note: 'Kostel' },
+  { id: 'E20', name: 'Navozit candybar a dort do Aušpicu', from: '2026-09-19T13:00', to: '2026-09-19T13:30', who: ['Giraffe bakery'], note: 'Aušpic' },
+  { id: 'E21', name: 'Ověřit že DJ je OK, pagáče, candy bar', from: '2026-09-19T13:00', to: '2026-09-19T13:30', who: ['Dianka'], note: 'Aušpic — Zavolat do Aušpicu' },
+  { id: 'E22', name: 'Vítat hosty před kostelem', from: '2026-09-19T13:30', to: '2026-09-19T14:00', who: ['Filip'], note: 'Kostel' },
+  { id: 'E23', name: 'Navázat hostům pierka', from: '2026-09-19T13:30', to: '2026-09-19T14:00', who: ['Veve'], note: 'Kostel — & Eliška' },
+  { id: 'E24', name: 'Na mieste usmerňovanie aby ľudia neboli rozťahaný', from: '2026-09-19T13:55', to: '2026-09-19T14:00', who: ['Kika'], note: 'Kostel' },
+  { id: 'E25', name: 'Rozdávat slivovici, vodu a svatební koláčky před kostelem', from: '2026-09-19T14:30', to: '2026-09-19T15:30', who: ['Neužka'], note: 'Kostel' },
+  { id: 'E26', name: 'Navozit slivovici a svatební koláčky z kostela do Aušpicu', from: '2026-09-19T15:30', to: '2026-09-19T16:00', who: ['Mamka'], note: 'Kostel' },
+  { id: 'E27', name: 'Maliarka je na místě', from: '2026-09-19T17:00', to: '2026-09-19T18:00', who: ['Dodavatel'], note: 'Aušpic' }
+];
+
+/* Color per person, cycling through this palette in order of first appearance. */
+const PALETTE = [
+  { fill: '#EEEDFE', border: '#7F77DD', text: '#26215C' }, // purple
+  { fill: '#E1F5EE', border: '#1D9E75', text: '#04342C' }, // teal
+  { fill: '#FAECE7', border: '#D85A30', text: '#4A1B0C' }, // coral
+  { fill: '#FBEAF0', border: '#D4537E', text: '#4B1528' }, // pink
+  { fill: '#FAEEDA', border: '#BA7517', text: '#412402' }, // amber
+  { fill: '#E6F1FB', border: '#378ADD', text: '#042C53' }  // blue
+];
+
+/* =========================================================
+   Data prep: expand multi-person tasks into per-person rows
+   ========================================================= */
+const events = [];
+rawEvents.forEach(e => {
+  e.who.forEach(p => events.push({ ...e, who: p }));
+});
+
+const allPeopleOrder = [...new Set(events.map(e => e.who))];
+const colorMap = {};
+allPeopleOrder.forEach((p, i) => colorMap[p] = PALETTE[i % PALETTE.length]);
+
+let currentDay = '18';
+let currentAssignee = null;
+
+function renderAssigneeFilters() {
+  const wrap = document.getElementById('assignee-filters');
+  wrap.innerHTML = '';
+  allPeopleOrder.forEach(p => {
+    const c = colorMap[p];
+    const chip = document.createElement('button');
+    chip.className = 'assignee-chip' + (p === currentAssignee ? ' active' : '');
+    chip.innerHTML = '<span class="dot" style="background:' + c.border + '"></span>' + p;
+    chip.addEventListener('click', () => {
+      currentAssignee = currentAssignee === p ? null : p;
+      renderAssigneeFilters();
+      render();
+    });
+    wrap.appendChild(chip);
+  });
+  wrap.classList.toggle('has-active', !!currentAssignee);
+}
+
+function fmtTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+function durationLabel(from, to) {
+  const mins = (new Date(to) - new Date(from)) / 60000;
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return h > 0 ? (h + 'h' + (m ? ' ' + m + 'm' : '')) : m + 'm';
+}
+
+/* Status derived from the device's current clock vs the task's scheduled window. */
+function getStatus(e) {
+  const now = new Date();
+  const start = new Date(e.from);
+  const end = new Date(e.to);
+  if (now < start) return { key: 'not-started', label: 'Not started' };
+  if (now >= start && now <= end) return { key: 'in-progress', label: 'In progress' };
+  return { key: 'done', label: 'Done' };
+}
+
+function showNote(e) {
+  const status = getStatus(e);
+  document.getElementById('note-title').textContent = e.name;
+  document.getElementById('note-meta').innerHTML =
+    e.who + ' \u00b7 ' + fmtTime(e.from) + '\u2013' + fmtTime(e.to) + ' \u00b7 ' + e.id +
+    ' <span class="status-badge ' + status.key + '">' + status.label + '</span>';
+  document.getElementById('note-text').textContent = e.note;
+  document.getElementById('note-panel').classList.add('open');
+}
+
+document.getElementById('note-close').addEventListener('click', () => {
+  document.getElementById('note-panel').classList.remove('open');
+});
+
+function render() {
+  const board = document.getElementById('board');
+  board.innerHTML = '';
+  document.getElementById('note-panel').classList.remove('open');
+
+  const dayEvents = events.filter(e => e.from.startsWith('2026-09-' + currentDay));
+  const dayPeople = allPeopleOrder.filter(p =>
+    dayEvents.some(e => e.who === p) && (!currentAssignee || p === currentAssignee)
+  );
+
+  if (dayPeople.length === 0) {
+    board.innerHTML = '<div class="empty-state">No tasks scheduled for this day.</div>';
+    return;
+  }
+
+  dayPeople.forEach(p => {
+    const tasks = dayEvents.filter(e => e.who === p).sort((a, b) => a.from.localeCompare(b.from));
+    const c = colorMap[p];
+
+    const col = document.createElement('div');
+    col.className = 'column';
+
+    const header = document.createElement('div');
+    header.className = 'column-header';
+    header.style.background = c.fill;
+    header.style.color = c.text;
+    header.innerHTML = '<span class="name">' + p + '</span><span class="count">' + tasks.length + '</span>';
+    col.appendChild(header);
+
+    tasks.forEach(e => {
+      const status = getStatus(e);
+      const card = document.createElement('button');
+      card.className = 'card';
+      card.style.borderLeftColor = c.border;
+      card.innerHTML =
+        '<div class="task-name">' + e.name + '</div>' +
+        '<div class="task-time">' + fmtTime(e.from) + '\u2013' + fmtTime(e.to) + ' \u00b7 ' + durationLabel(e.from, e.to) + '</div>' +
+        '<span class="status-badge ' + status.key + '">' + status.label + '</span>';
+      card.addEventListener('click', () => showNote(e));
+      col.appendChild(card);
+    });
+
+    board.appendChild(col);
+  });
+}
+
+document.querySelectorAll('.day-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentDay = btn.dataset.day;
+    document.querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+document.querySelector('.day-tab[data-day="18"]').classList.add('active');
+
+renderAssigneeFilters();
+
+/* Recompute statuses periodically so badges stay current if the page is left open. */
+setInterval(render, 60000);
+
+render();
+</script>
+
+</body>
+</html>
